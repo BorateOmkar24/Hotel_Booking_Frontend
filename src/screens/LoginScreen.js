@@ -21,7 +21,12 @@ function LoginScreen() {
     };
     //console.log(user);
     try {
-      const result = (await axios.post("https://hotel-crud-backend.onrender.com/api/users/login", user)).data;
+      const result = await fetch("https://hotel-crud-backend.onrender.com/api/users/login", {
+        method: 'POST',
+        body: JSON.stringify(
+          user
+        )
+      })
       console.log(result);
       localStorage.setItem("currentUser", JSON.stringify(result));
       window.location.href = "/home";
